@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Github Link For images -->
+    <!-- https://github.com/bradtraversy/vanillawebprojects/tree/master/music-player/images -->
+
+    <!-- Song Link -->
+    <!-- https://github.com/bradtraversy/vanillawebprojects/blob/master/music-player/music/hey.mp3?raw=true -->
+
+    <!-- https://github.com/bradtraversy/vanillawebprojects/blob/master/music-player/music/summer.mp3?raw=true -->
+
+    <!-- https://github.com/bradtraversy/vanillawebprojects/blob/master/music-player/images/summer.jpg?raw=true -->
+
+    <h1>Music Player</h1>
+    <div class="musicContainer">
+      <div class="musicInfo">
+        <h2>Summer</h2>
+        <div class="progressContainer">
+          <div class="progress"></div>
+        </div>
+      </div>
+      <img
+        src="https://github.com/bradtraversy/vanillawebprojects/blob/master/music-player/images/summer.jpg?raw=true"
+        alt=""
+      />
+      <div class="navingationButtons">
+        <ul>
+          <button class="icon">
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+          <button class="icon"><i class="fa-solid fa-caret-right"></i></button>
+          <button class="icon pauseActive">
+            <i class="fa-solid fa-pause"></i>
+          </button>
+          <button class="icon"><i class="fa-solid fa-forward-step"></i></button>
+        </ul>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
