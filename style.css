@@ -33,12 +33,22 @@ body {
   width: 500px;
   position: relative;
 }
-.musicContainer img {
+.musicImg {
   position: absolute;
   top: -40px;
   height: 135px;
   width: 135px;
   border-radius: 50%;
+}
+
+.musicImg.musicPlaying {
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .navingationButtons {
@@ -86,22 +96,24 @@ body {
   width: 80%;
   transition: width 0.1s ease-in linear;
 }
-.musicInfoContainer {
-  height: 65px;
-  /* padding: 30px; */
+.musicInfo {
   background-color: rgba(255, 255, 255, 0.5);
-  z-index: 0;
+  border-radius: 15px 15px 0 0;
   position: absolute;
-  top: -61px;
-  left: 65px;
-  width: 80%;
-  border-radius: 10px;
-  /* display: none; */
-}
-.musicInfo{
-  display: flex;
-    flex-direction: column;
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 150px;
+  top: 0;
+  left: 20px;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
+  opacity: 0;
 }
 .musicInfo h2 {
   font-size: 1.25rem;
+}
+
+.musicInfo.playSong {
+  transform: translateY(-100%);
+  opacity: 1;
 }
