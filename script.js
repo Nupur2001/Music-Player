@@ -1,0 +1,65 @@
+document.addEventListener("DOMContentLoaded", () => {
+  let musicContainer = document.querySelector(".musicContainer");
+  let musicInfo = document.querySelector(".musicInfo");
+  let progressContainer = document.querySelector(".progressContainer");
+  let progress = document.querySelector(".progress");
+  let musicImg = document.querySelector(".musicImg");
+  let navigationButtons = document.querySelector(".navigationButtons");
+  let icon = document.querySelector(".icon");
+  let play = document.querySelector(".play");
+  let pauseActive = document.querySelector(".pauseActive");
+  let songTitle = document.querySelector(".songTitle");
+  let songAudio = document.querySelector(".audio");
+  let forward = document.querySelector(".forward");
+  let backward = document.querySelector(".backward");
+
+  let allSongs = ["summer", "ukelele", "hey"];
+  let songIndex = 0;
+
+  songs(allSongs[songIndex]);
+  function songs(song) {
+    songTitle.innerHTML = `${song}`;
+    musicImg.src = `Images/${song}.jpg`;
+    songAudio.src = `Songs/${song}.mp3`;
+  }
+
+  function rotatingImg() {
+    if (musicImg.style.webkitAnimationPlayState == "running") {
+      musicImg.style.webkitAnimationPlayState == "paused";
+    } else {
+      musicImg.style.webkitAnimationPlayState == "running";
+    }
+  }
+  play.addEventListener("click", () => {
+    musicImg.classList.toggle("musicPlaying");
+    musicInfo.classList.toggle("playSong");
+    pauseActive.classList.toggle("active");
+    play.classList.toggle("active");
+    songAudio.play();
+    rotatingImg();
+
+  });
+
+  pauseActive.addEventListener("click", () => {
+    musicImg.classList.remove("musicPlaying");
+    musicInfo.classList.remove("playSong");
+    pauseActive.classList.remove("active");
+    play.classList.remove("active");
+    songAudio.pause();
+    rotatingImg();
+  });
+
+  backward.addEventListener("click", () => {
+    songIndex=(songIndex-1+allSongs.length)%allSongs.length
+    console.log(songIndex)
+    songAudio[songIndex].play();
+  });
+
+  forward.addEventListener('click',()=>{
+    if ((songIndex <= allSongs.length )) {
+        songIndex=(songIndex+1)%allSongs.length
+        console.log(songIndex)
+        songAudio[songIndex].play();
+    }
+  })
+});
