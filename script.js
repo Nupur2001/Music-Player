@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let forward = document.querySelector(".forward");
   let backward = document.querySelector(".backward");
 
-  let allSongs = ["summer", "ukelele", "hey"];
+  let allSongs = ["summer", "ukulele", "hey"];
   let songIndex = 0;
 
   songs(allSongs[songIndex]);
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function rotatingImg() {
-    if (musicImg.style.webkitAnimationPlayState == "running") {
-      musicImg.style.webkitAnimationPlayState == "paused";
+    if (musicImg.style.webkitAnimationPlayState === "running") {
+      musicImg.style.webkitAnimationPlayState = "paused";
     } else {
-      musicImg.style.webkitAnimationPlayState == "running";
+      musicImg.style.webkitAnimationPlayState = "running";
     }
   }
   play.addEventListener("click", () => {
@@ -36,30 +36,38 @@ document.addEventListener("DOMContentLoaded", () => {
     pauseActive.classList.toggle("active");
     play.classList.toggle("active");
     songAudio.play();
-    rotatingImg();
-
+    // rotatingImg();
   });
 
   pauseActive.addEventListener("click", () => {
+    // musicImg.style.webkitAnimationPlayState = "paused";
     musicImg.classList.remove("musicPlaying");
     musicInfo.classList.remove("playSong");
     pauseActive.classList.remove("active");
     play.classList.remove("active");
     songAudio.pause();
-    rotatingImg();
+    // rotatingImg();
   });
 
   backward.addEventListener("click", () => {
-    songIndex=(songIndex-1+allSongs.length)%allSongs.length
-    console.log(songIndex)
-    songAudio[songIndex].play();
+    songIndex = (songIndex - 1 + allSongs.length) % allSongs.length;
+    console.log(songIndex);
+    songs(allSongs[songIndex]);
+    musicInfo.classList.add("playSong");
+    pauseActive.classList.toggle("active");
+    play.classList.toggle("active");
+    songAudio.play();
   });
 
-  forward.addEventListener('click',()=>{
-    if ((songIndex <= allSongs.length )) {
-        songIndex=(songIndex+1)%allSongs.length
-        console.log(songIndex)
-        songAudio[songIndex].play();
+  forward.addEventListener("click", () => {
+    if (songIndex <= allSongs.length) {
+      songIndex = (songIndex + 1) % allSongs.length;
+      console.log(songIndex);
+      songs(allSongs[songIndex]);
+      musicInfo.classList.add("playSong");
+      pauseActive.classList.toggle("active");
+      play.classList.toggle("active");
+      songAudio.play();
     }
-  })
+  });
 });
