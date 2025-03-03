@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       musicImg.style.webkitAnimationPlayState = "running";
     }
   }
+
   play.addEventListener("click", () => {
     musicImg.classList.toggle("musicPlaying");
     musicInfo.classList.toggle("playSong");
@@ -70,4 +71,40 @@ document.addEventListener("DOMContentLoaded", () => {
       songAudio.play();
     }
   });
+
+
+  function updateProgress(e) {
+    // console.log(e.srcElement.currentTime)
+    // console.log(e.srcElement.duration)
+
+    let {currentTime,duration}=e.srcElement
+    let progressPercent=(currentTime/duration)*100
+    progress.style.width=`${progressPercent}%`;
+  }
+
+  function setProgress(e) {
+    let width=this.clientWidth
+    let clickX=e.offsetX
+    let duration=songAudio.duration
+    songAudio.currentTime=(clickX/width)*duration
+    // console.log(`width: ${width}`);
+    console.log(`clickX: ${clickX}`);
+  }
+
+  function nextSong(){
+     if (songIndex <= allSongs.length) {
+       songIndex = (songIndex + 1) % allSongs.length;
+       console.log(songIndex);
+       songs(allSongs[songIndex]);
+       musicInfo.classList.add("playSong");
+       pauseActive.classList.toggle("active");
+       play.classList.toggle("active");
+       songAudio.play();
+     }
+  }
+
+
+songAudio.addEventListener("timeupdate", updateProgress);
+progressContainer.addEventListener('click',setProgress)
+songAudio.addEventListener('ended',nextSong)
 });
